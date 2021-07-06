@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace rachaelCarpenter.passwordManager.wpf
+namespace CarpenterPass
 {
     static class Program
     {
