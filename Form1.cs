@@ -17,12 +17,11 @@ namespace CarpenterPass
         public Form1()
         {
             InitializeComponent();
-
-            OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db_users.mdb");
-            OleDbCommand cmd = new OleDbCommand();
-            OleDbDataAdapter da = new OleDbDataAdapter();
-
         }
+
+        OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db_users.mdb");
+        OleDbCommand cmd = new OleDbCommand();
+        OleDbDataAdapter da = new OleDbDataAdapter();
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -46,13 +45,27 @@ namespace CarpenterPass
             {
                 MessageBox.Show("Please enter username and password", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if(inputPass.Text == inputComPass.Text)
+            else if (inputPass.Text == inputComPass.Text)
             {
                 con.Open();
-                string register = "INSERT INTO tbl_users VALUES ('"+inputUserName.Text+"','"+inputPass.Text+"')";
+                string register = "INSERT INTO tbl_users VALUES ('" + inputUserName.Text + "','" + inputPass.Text + "')";
                 cmd = new OleDbCommand(register, con);
                 cmd.ExecuteNonQuery();
+                con.Close();
 
+                inputPass.Text = "";
+                inputComPass.Text = "";
+                inputUserName.Text = "";
+
+                MessageBox.Show("Your account has been created successfully.", "Registration Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else
+            {
+                MessageBox.Show("Passwords do not match. Try again.","Registration Failed",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                inputPass.Text = "";
+                inputComPass.Text = "";
+                inputPass.Focus();
             }
 
         }
@@ -60,6 +73,20 @@ namespace CarpenterPass
         private void inputPass_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            inputPass.Text = "";
+            inputComPass.Text = "";
+            inputUserName.Text = "";
+            inputUserName.Focus();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            new RCPassLogin().Show();
+            this.Hide();
         }
     }
 }

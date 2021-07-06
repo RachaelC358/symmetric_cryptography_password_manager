@@ -92,6 +92,7 @@ namespace CarpenterPass
             // 
             this.inputPass.Location = new System.Drawing.Point(77, 178);
             this.inputPass.Name = "inputPass";
+            this.inputPass.PasswordChar = '•';
             this.inputPass.Size = new System.Drawing.Size(100, 20);
             this.inputPass.TabIndex = 6;
             this.inputPass.TextChanged += new System.EventHandler(this.inputPass_TextChanged);
@@ -110,6 +111,7 @@ namespace CarpenterPass
             // 
             this.inputComPass.Location = new System.Drawing.Point(77, 235);
             this.inputComPass.Name = "inputComPass";
+            this.inputComPass.PasswordChar = '•';
             this.inputComPass.Size = new System.Drawing.Size(100, 20);
             this.inputComPass.TabIndex = 8;
             // 
@@ -141,6 +143,7 @@ namespace CarpenterPass
             this.button2.TabIndex = 10;
             this.button2.Text = "Clear Fields";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label6
             // 
@@ -160,6 +163,7 @@ namespace CarpenterPass
             this.linkLabel1.TabIndex = 13;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Go to Login";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // Form1
             // 

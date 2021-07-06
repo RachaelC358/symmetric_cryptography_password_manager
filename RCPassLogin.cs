@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
+
 
 namespace CarpenterPass
 {
@@ -15,6 +17,14 @@ namespace CarpenterPass
         public RCPassLogin()
         {
             InitializeComponent();
+        }
+        OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db_users.mdb");
+        OleDbCommand cmd = new OleDbCommand();
+        OleDbDataAdapter da = new OleDbDataAdapter();
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
