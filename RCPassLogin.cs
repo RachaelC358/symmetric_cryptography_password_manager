@@ -26,5 +26,25 @@ namespace CarpenterPass
         {
 
         }
+
+        private void Register_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            string login = "SELECT * FROM tbl_users WHERE username= '"+inputUserName.Text+"' and password= '"+inputPass.Text+"'";
+            cmd = new OleDbCommand(login, con);
+            OleDbDataReader dr = cmd.ExecuteReader();
+
+            if (dr.Read() = true)
+            {
+                new passHomePage().Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Username or password is invalid. Try again.","Login has failed.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+        }
     }
 }

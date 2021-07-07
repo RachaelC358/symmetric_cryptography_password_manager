@@ -77,6 +77,7 @@ namespace CarpenterPass
             this.Register.TabIndex = 22;
             this.Register.Text = "Login";
             this.Register.UseVisualStyleBackColor = true;
+            this.Register.Click += new System.EventHandler(this.Register_Click);
             // 
             // inputPass
             // 
