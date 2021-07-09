@@ -17,11 +17,13 @@ namespace CarpenterPass
         public Form1()
         {
             InitializeComponent();
-        }
 
+            
+        }
         OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db_users.mdb");
         OleDbCommand cmd = new OleDbCommand();
         OleDbDataAdapter da = new OleDbDataAdapter();
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -85,6 +87,7 @@ namespace CarpenterPass
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            // close current registration page and open login page
             new RCPassLogin().Show();
             this.Hide();
         }

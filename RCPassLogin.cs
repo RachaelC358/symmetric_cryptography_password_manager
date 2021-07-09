@@ -34,7 +34,7 @@ namespace CarpenterPass
             cmd = new OleDbCommand(login, con);
             OleDbDataReader dr = cmd.ExecuteReader();
 
-            if (dr.Read() = true)
+            if (dr.Read() == true)
             {
                 new passHomePage().Show();
                 this.Hide();
@@ -42,8 +42,29 @@ namespace CarpenterPass
             else
             {
                 MessageBox.Show("Username or password is invalid. Try again.","Login has failed.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                inputUserName.Text = "";
+                inputPass.Text = "";
+                inputUserName.Focus();
             }
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            inputUserName.Text = "";
+            inputPass.Text = "";
+            inputUserName.Focus();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            new Form1().Show();
+            this.Hide();
+
+        }
+
+        private void inputPass_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

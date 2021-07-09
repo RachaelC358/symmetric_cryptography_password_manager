@@ -50,6 +50,7 @@ namespace CarpenterPass
             this.linkLabel1.TabIndex = 25;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Back to Registration";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label6
             // 
@@ -68,6 +69,7 @@ namespace CarpenterPass
             this.button2.TabIndex = 23;
             this.button2.Text = "Clear Fields";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Register
             // 
@@ -83,8 +85,10 @@ namespace CarpenterPass
             // 
             this.inputPass.Location = new System.Drawing.Point(66, 163);
             this.inputPass.Name = "inputPass";
+            this.inputPass.PasswordChar = '•';
             this.inputPass.Size = new System.Drawing.Size(100, 20);
             this.inputPass.TabIndex = 19;
+            this.inputPass.TextChanged += new System.EventHandler(this.inputPass_TextChanged);
             // 
             // inputPassword
             // 
