@@ -35,13 +35,37 @@ namespace CarpenterPass
 
 
         // Use this method to convert password text to encrypted text.
-        public static string encryptText(string passWord)
-        { 
+        public static string encryptText(string userName, string passWord)
+        {
             // find bytes of passWord string
+            byte[] bytesToEncrypt = UTF8Encoding.UTF8.GetBytes(passWord);
 
+            // Compute hash value
+            MD5CryptoServiceProvider objMD5CryptoService = new MD5CryptoServiceProvider();
+            // Get the specific user key using "generateUserKey" function.
+            string customKey = generateUserKey(userName);
+            // Pass security key to get hash value.
+            byte[] customKeyArray = objMD5CryptoService.ComputeHash(UTF8Encoding.UTF8.GetBytes(customKey));
+            objMD5CryptoService.Clear();
 
+            var objTripleDES = new TripleDESCryptoServiceProvider();
+            objTripleDES.Key = customKeyArray;
+            objTripleDES.Mode = CipherMode.ECB;
+            objTripleDES.Padding = PaddingMode.PKCS7;
+
+            var crypto = objTripleDES.CreateEncryptor();
+            byte[] encryptedBytes = crypto.TransformFinalBlock(bytesToEncrypt, 0, bytesToEncrypt.Length);
+
+            objTripleDES.Clear();
+            return Convert.ToBase64String(encryptedBytes,0,encryptedBytes.Length);
         }
 
+
+
+        public static string decryptText(string encryption)
+        { 
+        
+        }
 
     }
 }
