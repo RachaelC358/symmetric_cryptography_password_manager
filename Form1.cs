@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 
 
+// This page is for user registration.
+
+
 namespace CarpenterPass
 {
     public partial class Form1 : Form
@@ -49,6 +52,8 @@ namespace CarpenterPass
             }
             else if (inputPass.Text == inputComPass.Text)
             {
+                // Now create a hash of the entered password and store the hash.
+
                 con.Open();
                 string register = "INSERT INTO tbl_users VALUES ('" + inputUserName.Text + "','" + inputPass.Text + "')";
                 cmd = new OleDbCommand(register, con);
