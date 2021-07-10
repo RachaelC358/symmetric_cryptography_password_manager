@@ -10,9 +10,9 @@ using System.Security.Cryptography;
 
 namespace CarpenterPass
 {
-    class encryptAndDecrypt
+    public partial class encryptAndDecrypt
     {
-
+        //
         public static string hashUserNameForKey(string userName, string salt, HashAlgorithm hasherHash)
         {
             byte[] saltByteText = Encoding.UTF8.GetBytes(string.Concat(userName, salt));
@@ -62,9 +62,29 @@ namespace CarpenterPass
 
 
 
-        public static string decryptText(string encryption)
-        { 
-        
+        public static string decryptText(string userName, string encryption)
+        {
+            // find bytes of passWord string
+            byte[] bytesToEncrypt = Convert.FromBase64String(encryption);
+
+            // Compute hash value
+            MD5CryptoServiceProvider objMD5CryptoService = new MD5CryptoServiceProvider();
+            // Get the specific user key using "generateUserKey" function.
+            string customKey = generateUserKey(userName);
+            // Pass security key to get hash value.
+            byte[] customKeyArray = objMD5CryptoService.ComputeHash(UTF8Encoding.UTF8.GetBytes(customKey));
+            objMD5CryptoService.Clear();
+
+            var objTripleDES = new TripleDESCryptoServiceProvider();
+            objTripleDES.Key = customKeyArray;
+            objTripleDES.Mode = CipherMode.ECB;
+            objTripleDES.Padding = PaddingMode.PKCS7;
+
+            var crypto = objTripleDES.CreateEncryptor();
+            byte[] encryptedBytes = crypto.TransformFinalBlock(bytesToEncrypt, 0, bytesToEncrypt.Length);
+
+            objTripleDES.Clear();
+            return UTF8Encoding.UTF8.GetString(encryptedBytes);
         }
 
     }

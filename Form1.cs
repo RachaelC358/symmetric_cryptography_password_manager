@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using CarpenterPass;
 
 
 // This page is for user registration.
@@ -20,28 +21,10 @@ namespace CarpenterPass
         public Form1()
         {
             InitializeComponent();
-
-            
         }
         OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db_users.mdb");
         OleDbCommand cmd = new OleDbCommand();
         OleDbDataAdapter da = new OleDbDataAdapter();
-
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void Register_Click(object sender, EventArgs e)
         {
@@ -53,9 +36,16 @@ namespace CarpenterPass
             else if (inputPass.Text == inputComPass.Text)
             {
                 // Now create a hash of the entered password and store the hash.
+                //covert text box input to string data type to prepare for hashing.
+                string userName = inputUserName.Text;
+                string passWord = inputPass.Text;
 
+                // Create hash of password, passing userName to generate user specific key.
+                string hashedPassWord = encryptAndDecrypt.encryptText(userName, passWord);
+
+                // Store the hash of the password.
                 con.Open();
-                string register = "INSERT INTO tbl_users VALUES ('" + inputUserName.Text + "','" + inputPass.Text + "')";
+                string register = "INSERT INTO tbl_users VALUES ('" + inputUserName.Text + "','" + hashedPassWord + "')";
                 cmd = new OleDbCommand(register, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -77,10 +67,6 @@ namespace CarpenterPass
 
         }
 
-        private void inputPass_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {

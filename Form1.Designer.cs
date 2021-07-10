@@ -61,7 +61,7 @@ namespace CarpenterPass
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Get started";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            
             // 
             // label2
             // 
@@ -95,7 +95,7 @@ namespace CarpenterPass
             this.inputPass.PasswordChar = '•';
             this.inputPass.Size = new System.Drawing.Size(100, 20);
             this.inputPass.TabIndex = 6;
-            this.inputPass.TextChanged += new System.EventHandler(this.inputPass_TextChanged);
+           
             // 
             // inputPassword
             // 
@@ -105,7 +105,7 @@ namespace CarpenterPass
             this.inputPassword.Size = new System.Drawing.Size(53, 13);
             this.inputPassword.TabIndex = 5;
             this.inputPassword.Text = "Password";
-            this.inputPassword.Click += new System.EventHandler(this.label4_Click);
+           
             // 
             // inputComPass
             // 
@@ -123,7 +123,7 @@ namespace CarpenterPass
             this.label5.Size = new System.Drawing.Size(91, 13);
             this.label5.TabIndex = 7;
             this.label5.Text = "Confirm Password";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            
             // 
             // Register
             // 

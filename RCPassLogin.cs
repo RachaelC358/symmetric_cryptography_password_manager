@@ -22,13 +22,12 @@ namespace CarpenterPass
         OleDbCommand cmd = new OleDbCommand();
         OleDbDataAdapter da = new OleDbDataAdapter();
 
-        private void label2_Click(object sender, EventArgs e)
-        {
 
-        }
-
+        // Login button checks if login information is correct and completes login or displays ERROR.
         private void Register_Click(object sender, EventArgs e)
         {
+            // Convert textbox input to hash and compare the new hashed password to the stored hash.
+
             con.Open();
             string login = "SELECT * FROM tbl_users WHERE username= '"+inputUserName.Text+"' and password= '"+inputPass.Text+"'";
             cmd = new OleDbCommand(login, con);
@@ -49,6 +48,8 @@ namespace CarpenterPass
 
         }
 
+
+        // Button press clears text fields.
         private void button2_Click(object sender, EventArgs e)
         {
             inputUserName.Text = "";
@@ -56,16 +57,13 @@ namespace CarpenterPass
             inputUserName.Focus();
         }
 
+
+        // Go back to registration page button.
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new Form1().Show();
             this.Hide();
-
         }
 
-        private void inputPass_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

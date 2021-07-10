@@ -88,7 +88,7 @@ namespace CarpenterPass
             this.inputPass.PasswordChar = '•';
             this.inputPass.Size = new System.Drawing.Size(100, 20);
             this.inputPass.TabIndex = 19;
-            this.inputPass.TextChanged += new System.EventHandler(this.inputPass_TextChanged);
+            
             // 
             // inputPassword
             // 
@@ -123,7 +123,7 @@ namespace CarpenterPass
             this.label2.Size = new System.Drawing.Size(183, 13);
             this.label2.TabIndex = 15;
             this.label2.Text = "Welcome to RC\'s Password Manager";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+           
             // 
             // label1
             // 
