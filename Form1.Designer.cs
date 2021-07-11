@@ -1,6 +1,7 @@
 ﻿
 namespace CarpenterPass
 {
+  
     partial class Form1
     {
         /// <summary>

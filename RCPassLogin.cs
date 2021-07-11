@@ -27,14 +27,22 @@ namespace CarpenterPass
         private void Register_Click(object sender, EventArgs e)
         {
             // Convert textbox input to hash and compare the new hashed password to the stored hash.
+            //covert text box input to string data type to prepare for hashing.
+            string userName = inputUserName.Text;
+            string passWord = inputPass.Text;
+
+            // Create hash of password, passing userName to generate user specific key.
+            string hashedPassWord = encryptAndDecrypt.encryptText(userName, passWord);
 
             con.Open();
-            string login = "SELECT * FROM tbl_users WHERE username= '"+inputUserName.Text+"' and password= '"+inputPass.Text+"'";
+            string login = "SELECT * FROM tbl_users WHERE username= '"+inputUserName.Text+"' and password= '"+hashedPassWord+"'";
             cmd = new OleDbCommand(login, con);
             OleDbDataReader dr = cmd.ExecuteReader();
 
             if (dr.Read() == true)
             {
+                // Set the userID to the current username so it can be used on the home page.
+                UserID.usernameID = userName;
                 new passHomePage().Show();
                 this.Hide();
             }

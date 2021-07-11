@@ -16,6 +16,12 @@ using CarpenterPass;
 
 namespace CarpenterPass
 {
+
+    // This class will be used to identify the user later, on the home page.
+    static class UserID
+    {
+        public static string usernameID;
+    }
     public partial class Form1 : Form
     {
         public Form1()
