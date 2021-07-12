@@ -46,6 +46,9 @@ namespace CarpenterPass
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -90,7 +93,7 @@ namespace CarpenterPass
             // 
             // quitProgramOptionButton
             // 
-            this.quitProgramOptionButton.Location = new System.Drawing.Point(194, 353);
+            this.quitProgramOptionButton.Location = new System.Drawing.Point(247, 352);
             this.quitProgramOptionButton.Name = "quitProgramOptionButton";
             this.quitProgramOptionButton.Size = new System.Drawing.Size(75, 23);
             this.quitProgramOptionButton.TabIndex = 4;
@@ -116,6 +119,8 @@ namespace CarpenterPass
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.checkBox1);
+            this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.comboBox1);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label4);
@@ -197,7 +202,7 @@ namespace CarpenterPass
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(1, 55);
+            this.label7.Location = new System.Drawing.Point(-1, 32);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(199, 13);
             this.label7.TabIndex = 9;
@@ -206,17 +211,45 @@ namespace CarpenterPass
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(42, 90);
+            this.comboBox1.Location = new System.Drawing.Point(42, 63);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 10;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(137, 352);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Log out";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.AcceptsReturn = true;
+            this.textBox1.Location = new System.Drawing.Point(42, 118);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 11;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(42, 144);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(108, 17);
+            this.checkBox1.TabIndex = 12;
+            this.checkBox1.Text = "Reveal password";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // passHomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(459, 404);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.quitProgramOptionButton);
@@ -253,5 +286,8 @@ namespace CarpenterPass
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button1;
     }
 }

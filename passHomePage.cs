@@ -81,13 +81,17 @@ namespace CarpenterPass
                 con.Open();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = con;
-                string q = "SELECT password FROM tbl_passwords WHERE username= '" + UserID.usernameID +" AND service = '" + comboBox1.Text + "'";
+                string q = "SELECT * FROM tbl_passwords WHERE username = '" + UserID.usernameID +"' AND service = '" + comboBox1.Text + "'";
                 command.CommandText = q;
 
                 OleDbDataReader r = command.ExecuteReader();
+
+                // Decrypt stored hash of password for display.
                 while (r.Read())
                 {
-                    string decyptedPassword = r["password"].ToString();
+                    string encryption = r["password"].ToString();  // ? why not work?
+                    string decryption = encryptAndDecrypt.decryptText(UserID.usernameID, encryption);
+                    textBox1.Text = decryption;
                 }
                 con.Close();
             }

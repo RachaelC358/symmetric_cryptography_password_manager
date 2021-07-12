@@ -80,7 +80,7 @@ namespace CarpenterPass
             objTripleDES.Mode = CipherMode.ECB;
             objTripleDES.Padding = PaddingMode.PKCS7;
 
-            var crypto = objTripleDES.CreateEncryptor();
+            var crypto = objTripleDES.CreateDecryptor();
             byte[] encryptedBytes = crypto.TransformFinalBlock(bytesToEncrypt, 0, bytesToEncrypt.Length);
 
             objTripleDES.Clear();
