@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 
 
+// Login page takes for input and encryption hash of input password to stored encrypted password.
 namespace CarpenterPass
 {
     public partial class RCPassLogin : Form
@@ -18,6 +19,8 @@ namespace CarpenterPass
         {
             InitializeComponent();
         }
+
+        // Connect with database table storing usernames and encrypted master passwords.
         OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db_users.mdb");
         OleDbCommand cmd = new OleDbCommand();
         OleDbDataAdapter da = new OleDbDataAdapter();
@@ -73,5 +76,9 @@ namespace CarpenterPass
             this.Hide();
         }
 
+        private void RCPassLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -7,15 +7,16 @@ using System.Security.Cryptography;
 
 // This file contains fucntions for encryption, decryption, and 
 // generation of user-specific keys.
-
 namespace CarpenterPass
 {
     public partial class encryptAndDecrypt
     {
-        //
+        // This is a hashing function called by the generateUserKey method.
         public static string hashUserNameForKey(string userName, string salt, HashAlgorithm hasherHash)
         {
+            // salt the username
             byte[] saltByteText = Encoding.UTF8.GetBytes(string.Concat(userName, salt));
+            // hash salted username
             byte[] byteHash = hasherHash.ComputeHash(saltByteText);
             hasherHash.Clear();
 
@@ -29,7 +30,6 @@ namespace CarpenterPass
         {
             string salt = "ultraSecretSalt39756";
             string userKey = hashUserNameForKey(userName, salt, new SHA1CryptoServiceProvider());
-
             return userKey;
         }
 
@@ -48,11 +48,13 @@ namespace CarpenterPass
             byte[] customKeyArray = objMD5CryptoService.ComputeHash(UTF8Encoding.UTF8.GetBytes(customKey));
             objMD5CryptoService.Clear();
 
+            // set encryption settings
             var objTripleDES = new TripleDESCryptoServiceProvider();
             objTripleDES.Key = customKeyArray;
             objTripleDES.Mode = CipherMode.ECB;
             objTripleDES.Padding = PaddingMode.PKCS7;
 
+            // encyrption happens here
             var crypto = objTripleDES.CreateEncryptor();
             byte[] encryptedBytes = crypto.TransformFinalBlock(bytesToEncrypt, 0, bytesToEncrypt.Length);
 
@@ -61,10 +63,10 @@ namespace CarpenterPass
         }
 
 
-
+        // Use this method to convert cipher back to plain text.
         public static string decryptText(string userName, string encryption)
         {
-            // find bytes of passWord string
+            // find bytes of cipher
             byte[] bytesToEncrypt = Convert.FromBase64String(encryption);
 
             // Compute hash value
@@ -75,11 +77,13 @@ namespace CarpenterPass
             byte[] customKeyArray = objMD5CryptoService.ComputeHash(UTF8Encoding.UTF8.GetBytes(customKey));
             objMD5CryptoService.Clear();
 
+            // set decryption settings
             var objTripleDES = new TripleDESCryptoServiceProvider();
             objTripleDES.Key = customKeyArray;
             objTripleDES.Mode = CipherMode.ECB;
             objTripleDES.Padding = PaddingMode.PKCS7;
 
+            // decryption happens here
             var crypto = objTripleDES.CreateDecryptor();
             byte[] encryptedBytes = crypto.TransformFinalBlock(bytesToEncrypt, 0, bytesToEncrypt.Length);
 

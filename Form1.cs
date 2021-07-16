@@ -11,27 +11,30 @@ using System.Data.OleDb;
 using CarpenterPass;
 
 
-// This page is for user registration.
-
-
+// This page is for the user registration form.
 namespace CarpenterPass
 {
-
     // This class will be used to identify the user later, on the home page.
     static class UserID
     {
         public static string usernameID;
     }
+
+    // functions for registration form here
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
         }
-        OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db_users.mdb");
-        OleDbCommand cmd = new OleDbCommand();
-        OleDbDataAdapter da = new OleDbDataAdapter();
 
+        // Set up connection to microsoft access table for users and passwords.
+        OleDbConnection conn = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db_users.mdb");
+        OleDbCommand cmmd = new OleDbCommand();
+        OleDbDataAdapter data = new OleDbDataAdapter();
+
+
+        // Registration button code is here.
         private void Register_Click(object sender, EventArgs e)
         {
             // deny empty text fields
@@ -50,12 +53,13 @@ namespace CarpenterPass
                 string hashedPassWord = encryptAndDecrypt.encryptText(userName, passWord);
 
                 // Store the hash of the password.
-                con.Open();
+                conn.Open();
                 string register = "INSERT INTO tbl_users VALUES ('" + inputUserName.Text + "','" + hashedPassWord + "')";
-                cmd = new OleDbCommand(register, con);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                cmmd = new OleDbCommand(register, conn);
+                cmmd.ExecuteNonQuery();
+                conn.Close();
 
+                // clear fields
                 inputPass.Text = "";
                 inputComPass.Text = "";
                 inputUserName.Text = "";
@@ -73,7 +77,7 @@ namespace CarpenterPass
 
         }
 
-
+        // clear fields
         private void button2_Click(object sender, EventArgs e)
         {
             inputPass.Text = "";

@@ -44,7 +44,7 @@ namespace CarpenterPass
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(69, 321);
+            this.linkLabel1.Location = new System.Drawing.Point(98, 328);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(103, 13);
             this.linkLabel1.TabIndex = 25;
@@ -55,7 +55,7 @@ namespace CarpenterPass
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(66, 304);
+            this.label6.Location = new System.Drawing.Point(95, 311);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(122, 13);
             this.label6.TabIndex = 24;
@@ -63,7 +63,7 @@ namespace CarpenterPass
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(66, 265);
+            this.button2.Location = new System.Drawing.Point(95, 272);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 23;
@@ -73,7 +73,7 @@ namespace CarpenterPass
             // 
             // Register
             // 
-            this.Register.Location = new System.Drawing.Point(66, 222);
+            this.Register.Location = new System.Drawing.Point(95, 229);
             this.Register.Name = "Register";
             this.Register.Size = new System.Drawing.Size(75, 23);
             this.Register.TabIndex = 22;
@@ -83,17 +83,16 @@ namespace CarpenterPass
             // 
             // inputPass
             // 
-            this.inputPass.Location = new System.Drawing.Point(66, 163);
+            this.inputPass.Location = new System.Drawing.Point(95, 170);
             this.inputPass.Name = "inputPass";
             this.inputPass.PasswordChar = '•';
             this.inputPass.Size = new System.Drawing.Size(100, 20);
             this.inputPass.TabIndex = 19;
-            
             // 
             // inputPassword
             // 
             this.inputPassword.AutoSize = true;
-            this.inputPassword.Location = new System.Drawing.Point(66, 147);
+            this.inputPassword.Location = new System.Drawing.Point(95, 154);
             this.inputPassword.Name = "inputPassword";
             this.inputPassword.Size = new System.Drawing.Size(53, 13);
             this.inputPassword.TabIndex = 18;
@@ -101,7 +100,7 @@ namespace CarpenterPass
             // 
             // inputUserName
             // 
-            this.inputUserName.Location = new System.Drawing.Point(66, 105);
+            this.inputUserName.Location = new System.Drawing.Point(95, 112);
             this.inputUserName.Name = "inputUserName";
             this.inputUserName.Size = new System.Drawing.Size(100, 20);
             this.inputUserName.TabIndex = 17;
@@ -109,7 +108,7 @@ namespace CarpenterPass
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(66, 89);
+            this.label3.Location = new System.Drawing.Point(95, 96);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 16;
@@ -123,7 +122,6 @@ namespace CarpenterPass
             this.label2.Size = new System.Drawing.Size(183, 13);
             this.label2.TabIndex = 15;
             this.label2.Text = "Welcome to RC\'s Password Manager";
-           
             // 
             // label1
             // 
@@ -138,7 +136,7 @@ namespace CarpenterPass
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(310, 414);
+            this.ClientSize = new System.Drawing.Size(310, 367);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button2);
@@ -151,6 +149,7 @@ namespace CarpenterPass
             this.Controls.Add(this.label1);
             this.Name = "RCPassLogin";
             this.Text = "RCPassLogin";
+            this.Load += new System.EventHandler(this.RCPassLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

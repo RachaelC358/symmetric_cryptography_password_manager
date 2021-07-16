@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using CarpenterPass;
 
+
+// Methods for home page are here including new password storage and password retreival.
 namespace CarpenterPass
 {
     public partial class passHomePage : Form
@@ -18,15 +20,12 @@ namespace CarpenterPass
         {
             InitializeComponent();
         }
-        OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db_passwords.mdb");
-        OleDbCommand cmd = new OleDbCommand();
-        OleDbDataAdapter da = new OleDbDataAdapter();
+
+        // Set up connection to database table for passwords to services.
+        OleDbConnection conn = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db_passwords.mdb");
+        OleDbCommand cmmd = new OleDbCommand();
+        OleDbDataAdapter data = new OleDbDataAdapter();
        
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         // Validate and store passwords for services.
         private void storePasswordOptionButton_Click(object sender, EventArgs e)
@@ -47,12 +46,13 @@ namespace CarpenterPass
                 string hashedPassWord = encryptAndDecrypt.encryptText(userName, passWord);
 
                 // Store the hash of the password.
-                con.Open();
+                conn.Open();
                 string register = "INSERT INTO tbl_passwords VALUES ('" + userName + "','" + inputService.Text + "','" + hashedPassWord + "')";
-                cmd = new OleDbCommand(register, con);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                cmmd = new OleDbCommand(register, conn);
+                cmmd.ExecuteNonQuery();
+                conn.Close();
 
+                // Clear fields
                 inputPass.Text = "";
                 inputComPass.Text = "";
                 inputService.Text = "";
@@ -69,18 +69,16 @@ namespace CarpenterPass
 
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
 
-        }
-
+        // This takes the service option chosen from the drop down menu and puts the 
+        // decyrpted password in the text box for viewing.
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                con.Open();
+                conn.Open();
                 OleDbCommand command = new OleDbCommand();
-                command.Connection = con;
+                command.Connection = conn;
                 string q = "SELECT * FROM tbl_passwords WHERE username = '" + UserID.usernameID +"' AND service = '" + comboBox1.Text + "'";
                 command.CommandText = q;
 
@@ -89,11 +87,11 @@ namespace CarpenterPass
                 // Decrypt stored hash of password for display.
                 while (r.Read())
                 {
-                    string encryption = r["password"].ToString();  // ? why not work?
+                    string encryption = r["password"].ToString();  
                     string decryption = encryptAndDecrypt.decryptText(UserID.usernameID, encryption);
                     textBox1.Text = decryption;
                 }
-                con.Close();
+                conn.Close();
             }
             catch (Exception E)
             {
@@ -102,13 +100,15 @@ namespace CarpenterPass
 
         }
 
+
+        // When the home page opens, the drop down comboBox is loaded with names of services.
         private void passHomePage_Load(object sender, EventArgs e)
         {
             try
             {
-                con.Open();
+                conn.Open();
                 OleDbCommand command = new OleDbCommand();
-                command.Connection = con;
+                command.Connection = conn;
                 string q = "SELECT * FROM tbl_passwords WHERE username= '" + UserID.usernameID + "'";
                 command.CommandText = q;
 
@@ -117,12 +117,66 @@ namespace CarpenterPass
                 {
                     comboBox1.Items.Add(r["service"].ToString());
                 }
-                con.Close();
+                conn.Close();
             }
             catch (Exception E)
             {
                 MessageBox.Show("Error  " + E);
             }
+        }
+
+
+        // Checkbox hides or reveals stored password when clicked.
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                textBox1.PasswordChar = '•';
+            }
+            else
+            {
+                textBox1.PasswordChar = '\0';
+            }
+        }
+
+
+        // This button refreshes services listed in the drop down comboBox when clicked.
+        private void retreivePasswordsOptionButton_Click(object sender, EventArgs e)
+        {
+            comboBox1.Items.Clear();
+            try
+            {
+                conn.Open();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = conn;
+                string q = "SELECT * FROM tbl_passwords WHERE username= '" + UserID.usernameID + "'";
+                command.CommandText = q;
+
+                OleDbDataReader r = command.ExecuteReader();
+                while (r.Read())
+                {
+                    comboBox1.Items.Add(r["service"].ToString());
+                }
+                conn.Close();
+            }
+            catch (Exception E)
+            {
+                MessageBox.Show("Error  " + E);
+            }
+        }
+        
+
+        // Quit program button closes application
+        private void quitProgramOptionButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        // Go back to the login page.
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new RCPassLogin().Show();
+            this.Hide();
         }
     }
 }

@@ -35,20 +35,20 @@ namespace CarpenterPass
             this.retreivePasswordsOptionButton = new System.Windows.Forms.Button();
             this.quitProgramOptionButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.inputComPass = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.inputPass = new System.Windows.Forms.TextBox();
             this.inputPassword = new System.Windows.Forms.Label();
             this.inputService = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +61,7 @@ namespace CarpenterPass
             this.label1.Size = new System.Drawing.Size(143, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Welcome to your home page";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+           
             // 
             // label2
             // 
@@ -84,12 +84,13 @@ namespace CarpenterPass
             // 
             // retreivePasswordsOptionButton
             // 
-            this.retreivePasswordsOptionButton.Location = new System.Drawing.Point(39, 202);
+            this.retreivePasswordsOptionButton.Location = new System.Drawing.Point(42, 65);
             this.retreivePasswordsOptionButton.Name = "retreivePasswordsOptionButton";
             this.retreivePasswordsOptionButton.Size = new System.Drawing.Size(120, 23);
             this.retreivePasswordsOptionButton.TabIndex = 3;
-            this.retreivePasswordsOptionButton.Text = "Retreive password";
+            this.retreivePasswordsOptionButton.Text = "Refresh service list";
             this.retreivePasswordsOptionButton.UseVisualStyleBackColor = true;
+            this.retreivePasswordsOptionButton.Click += new System.EventHandler(this.retreivePasswordsOptionButton_Click);
             // 
             // quitProgramOptionButton
             // 
@@ -99,6 +100,7 @@ namespace CarpenterPass
             this.quitProgramOptionButton.TabIndex = 4;
             this.quitProgramOptionButton.Text = "Quit program";
             this.quitProgramOptionButton.UseVisualStyleBackColor = true;
+            this.quitProgramOptionButton.Click += new System.EventHandler(this.quitProgramOptionButton_Click);
             // 
             // panel1
             // 
@@ -115,39 +117,6 @@ namespace CarpenterPass
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 239);
             this.panel1.TabIndex = 5;
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.checkBox1);
-            this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Controls.Add(this.comboBox1);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.retreivePasswordsOptionButton);
-            this.panel2.Location = new System.Drawing.Point(247, 80);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 239);
-            this.panel2.TabIndex = 6;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(129, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Add new passwords here.";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(36, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(127, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Retreive passwords here.";
             // 
             // inputComPass
             // 
@@ -199,6 +168,65 @@ namespace CarpenterPass
             this.label6.TabIndex = 9;
             this.label6.Text = "Name of Service";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(34, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Add new passwords here.";
+           
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.checkBox1);
+            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.comboBox1);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.retreivePasswordsOptionButton);
+            this.panel2.Location = new System.Drawing.Point(247, 80);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(200, 239);
+            this.panel2.TabIndex = 6;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(42, 202);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(135, 17);
+            this.checkBox1.TabIndex = 12;
+            this.checkBox1.Text = "Hide/Reveal password";
+            this.checkBox1.UseVisualStyleBackColor = false;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // textBox1
+            // 
+            this.textBox1.AcceptsReturn = true;
+            this.textBox1.Location = new System.Drawing.Point(42, 167);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.PasswordChar = '•';
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 11;
+            
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(42, 116);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 10;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -208,14 +236,14 @@ namespace CarpenterPass
             this.label7.TabIndex = 9;
             this.label7.Text = "Select a service to retreive it\'s password.";
             // 
-            // comboBox1
+            // label4
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(42, 63);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 10;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(36, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(127, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Retreive passwords here.";
             // 
             // button1
             // 
@@ -225,24 +253,7 @@ namespace CarpenterPass
             this.button1.TabIndex = 7;
             this.button1.Text = "Log out";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.AcceptsReturn = true;
-            this.textBox1.Location = new System.Drawing.Point(42, 118);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 11;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(42, 144);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(108, 17);
-            this.checkBox1.TabIndex = 12;
-            this.checkBox1.Text = "Reveal password";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // passHomePage
             // 
